@@ -9,21 +9,9 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   margin-top: 0;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  color: #333;
+  color: #444;
   letter-spacing: -0.02em;
-}
-
-
-/*
- * Override Bootstrap's default container.
- */
-
-@media (min-width: 1200px) {
-  .container {
-    width: 970px;
-  }
 }
 
 html {
@@ -33,6 +21,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 100px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #footer {
   padding-top: 20px;
@@ -54,7 +43,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #333;
+  color: #444;
   text-decoration: none;
 }
 
@@ -62,14 +51,38 @@ a:focus {
  * Blog name and description
  */
 
-.blog-header {
+.name {
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: #333;
-  text-align: center;
-  width: 100%;
+  font-size: 40px;
   margin-bottom: 40px;
+  font-weight: 300;
+}
 
+.menu {
+  padding-top: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.menu li {
+  display: inline;
+  padding-left: 15px;
+}
+
+.nav {
+  color: #444;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  text-decoration: none;
+}
+
+.nav:hover,
+.nav:focus,
+.nav:active {
+  color: #eb4d5c;
+  text-decoration: none;
 }
 
 a.rss {
@@ -106,13 +119,6 @@ a.github:active {
   color: #cccccc;
 }
 
-.home:hover,
-.home:focus,
-.home:active,
-.home.active {
-  color: #BFBFBF;
-}
-
 .blog-title {
   margin-top: 30px;
   margin-bottom: 0;
@@ -142,6 +148,12 @@ a.github:active {
   font-size: 16px;
 }
 
+.hero {
+  margin-bottom: 60px;
+  background-image: url('../images/31H.jpg');
+  height: 200px;
+}
+
 /* Sidebar modules for boxing content */
 .sidebar-module {
   padding: 15px;
@@ -157,8 +169,6 @@ a.github:active {
 .sidebar-module-inset ol:last-child {
   margin-bottom: 0;
 }
-
-
 
 /* Pagination */
 .pager {
