@@ -1,0 +1,23 @@
+---
+layout: base
+---
+<div class="container blog-post">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="blog-post-title">
+        <small><a class="home" href="/" title="Home" target="/"><i class="fa fa-home"></i></a></small>
+        {{ page.title }}
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <hr/>
+      <p class="blog-post-meta"><i class="fa fa-calendar"></i> {{ page.date | date_to_string }}</p>
+
+      {{ content }}
+
+    </div>
+  </div>
+</div>

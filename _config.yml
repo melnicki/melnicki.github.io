@@ -1,0 +1,40 @@
+name: "Mike Melnicki's Blog"
+desc: "This is a placeholder for now"
+markdown: redcarpet
+pygments: true
+relative_permalinks: true
+permalink:     pretty
+paginate_path: 'page:num'
+paginate: 10
+
+twitter:      mikemelnicki
+
+# Comments
+disqus:
+  # Eg. "exampleblog" Set to false to disable comments
+  shortname:  false
+
+# Sharing settings
+sharing:
+  twitter:    true
+  facebook:   true
+  gplus:      true
+  hn:         true
+
+#
+# jekyll-assets: see more at https://github.com/ixti/jekyll-assets
+#
+assets:
+
+  dirname: assets
+  baseurl: /assets/
+  sources:
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/images
+  js_compressor: uglifier
+  css_compressor: sass
+  cachebust: none
+  cache: false
+  gzip: [ text/css, application/javascript ]
+  debug: false

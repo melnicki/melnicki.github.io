@@ -1,0 +1,161 @@
+//= require vendor/bootstrap/bootstrap
+//= require syntax
+
+@import url("//fonts.googleapis.com/css?family=Lato");
+
+/*
+ * Globals
+ */
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
+}
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
+#footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-size: 14px;
+}
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #333;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
+
+}
+
+.rss {
+  color: #ff9933;
+}
+
+.rss:hover,
+.rss:focus,
+.rss:active,
+.rss.active {
+  color: darken(#ff9933, 5);
+}
+
+.home {
+  color: #cccccc;
+}
+
+.home:hover,
+.home:focus,
+.home:active,
+.home.active {
+  color: darken(#cccccc, 5);
+}
+
+.blog-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.blog-description {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: .01rem;
+}
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+
+
+/* Pagination */
+.pager {
+  margin-bottom: 60px;
+  text-align: left;
+}
+.pager > li > a {
+  width: 140px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  margin-left: -35px;
+  font-size: 40px;
+}
+.blog-post-meta {
+  margin-bottom: 20px;
+  color: #999;
+}

@@ -1,0 +1,55 @@
+---
+layout: base
+---
+<div class="blog-header">
+  <h1 class="blog-title">{{ site.name }}</h1>
+  <p class="lead blog-description">{{ site.desc }}</p>
+  <ul class="list-inline">
+    <li><a class="twitter" href="https://twitter.com/{{ site.twitter }}" title="Follow on Twitter" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+    <li><a class="rss" href="/feed.xml" title="RSS Feed"><i class="fa fa-rss fa-2x"></i></a></li>
+  </ul>
+</div>
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-8 blog-main">
+      {% for post in paginator.posts %}
+        {% unless post.draft %}
+          <section class="index">
+            <div>
+              <h2 class="title"><a href="{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
+              <p>{{ post.excerpt }}</p>
+              <div class="meta">
+                <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date: "%B %d, %Y" }}">{{ post.date | date: "%B %d, %Y" }}</time>
+              </div>
+            </div>
+            <hr>
+          </section>
+          {% endunless %}
+          {% endfor %}
+          <ul class="pager">
+            {% if paginator.previous_page %}
+              {% if paginator.previous_page == 1 %}
+              <li class="next"><a href="/">&larr; Newer</a></li>
+              {% else %}
+              <li class="next"><a href="/page{{ paginator.previous_page }}">&larr; Newer</a></li>
+              {% endif %}
+            {% endif %}
+            {% if paginator.next_page %}
+            <li class="previous"><a href="/page{{ paginator.next_page }}">Older &rarr;</a></li>
+            {% endif %}
+          </ul>
+
+    </div><!-- /.blog-main -->
+
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        <h4>About</h4>
+        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+      </div>
+    </div><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
