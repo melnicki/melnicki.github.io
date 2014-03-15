@@ -10,8 +10,9 @@ h5, .h5,
 h6, .h6 {
   margin-top: 0;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-weight: 700;
   color: #333;
+  letter-spacing: -0.02em;
 }
 
 
@@ -131,9 +132,14 @@ a.github:active {
  */
 
 .blog-main {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
   letter-spacing: .01rem;
+}
+
+.meta {
+  color: #999;
+  font-size: 16px;
 }
 
 /* Sidebar modules for boxing content */
@@ -172,6 +178,7 @@ a.github:active {
  */
 
 .blog-post {
+  font-size: 20px;
   margin-top: 60px;
   margin-bottom: 60px;
 }
