@@ -22,6 +22,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 100px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fff;
 }
 #footer {
   padding-top: 20px;
@@ -178,10 +179,6 @@ a.github:active {
   font-size: 14px;
  }
 
- .gist .gist-data {
-    background-color: #fff !important;
- }
-
 .blog-post {
   font-size: 20px;
   margin-bottom: 200px;
@@ -213,7 +210,8 @@ a.github:active {
  * Syntaxt highlights
  */
 
-.highlight  { background: #ffffff; }
+pre,
+.highlight  { background: #f8f8ff; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
