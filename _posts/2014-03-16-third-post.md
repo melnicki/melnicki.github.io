@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Third post"
+title:  "A post with slightly a longer title"
 date:   2014-03-16 10:10:10
 ---
 
