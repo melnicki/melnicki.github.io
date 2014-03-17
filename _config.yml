@@ -1,13 +1,16 @@
-name: "Mike Melnicki's Blog"
-desc: "This is a placeholder for now"
-markdown: redcarpet
-pygments: true
-relative_permalinks: true
-permalink:     pretty
-paginate_path: 'page:num'
-paginate: 10
+title:          "Mike Melnicki's Blog"
+subtitle:       "This is a blog"
+publisher:      "Mike Melnicki"
+url:            http://blog.melnicki.com
+logo:           logo.png
+markdown:       redcarpet
+pygments:       true
 
-twitter:      mikemelnicki
+permalink:      pretty
+twitter:        mikemelnicki
+github:         melnicki
+
+relative_permalinks: true
 
 # Sharing settings
 sharing:
@@ -15,3 +18,13 @@ sharing:
   facebook:   true
   gplus:      true
   hn:         true
+
+# Analytics
+analytics:
+  google: true
+  domain: melnicki.com
+  analytics_id: 'UA-49046195-1'
+
+# Google Fonts
+  # eg. 'Droid+Sans:400,700|Droid+Serif:400,700'
+  google_font: 'Open+Sans:400,700,300'

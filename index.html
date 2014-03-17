@@ -1,58 +1,24 @@
 ---
 layout: base
 ---
-<div class="header">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6 name">
-        <a class="nav" href="/">MIKE <b>MELNICKI</b></a>
-      </div>
-
-      <div class="col-xs-1 nav-head">
-        <ul class="menu">
-          <li><a class="nav" href="/about/">About</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 <div class="hero"></div>
 <div class="container">
 
-  <div class="row">
-
-    <div class="col-xs-10 blog-main">
-      {% for post in paginator.posts %}
-        {% unless post.draft %}
-          <section class="index">
-            <div>
-              <h2 class="title"><a href="{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
-              <p>{{ post.excerpt }}</p>
-              <div class="meta">
-                <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date: "%B %d, %Y" }}">{{ post.date | date: "%B %d, %Y" }}</time>
-              </div>
+  <section class="index blog-main">
+    {% for post in site.posts %}
+      {% unless post.draft %}
+        <div class="row">
+          <div class="col-xs-8">
+            <h2 class="index-title"><a href="{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
+          </div>
+          <div class="col-xs-3 text-left">
+            <div class="meta">
+              <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time>
             </div>
-            <hr>
-          </section>
-          {% endunless %}
-          {% endfor %}
-          <ul class="pager">
-            {% if paginator.previous_page %}
-              {% if paginator.previous_page == 1 %}
-              <li class="next"><a href="/">&larr; Newer</a></li>
-              {% else %}
-              <li class="next"><a href="/page{{ paginator.previous_page }}">&larr; Newer</a></li>
-              {% endif %}
-            {% endif %}
-            {% if paginator.next_page %}
-            <li class="previous"><a href="/page{{ paginator.next_page }}">Older &rarr;</a></li>
-            {% endif %}
-          </ul>
+          </div>
+        </div>
+      {% endunless %}
+    {% endfor %}
+    </section>
 
-    </div><!-- /.blog-main -->
-
-
-  </div><!-- /.row -->
-
-</div><!-- /.container -->
+</div>

@@ -1,0 +1,27 @@
+{% if site.sharing.twitter or site.sharing.facebook or site.sharing.gplus or site.sharing.hn %}
+<section class="social">
+  <ul class="list-inline">
+    {% if site.sharing.twitter %}
+    <li class="social-btn">
+      <a href="https://twitter.com/share" class="twitter-share-button" {% if site.sharing.twitter.via %}data-via="{{ site.sharing.twitter.via }}"{% endif %} data-text="{{ page.title }}" data-related="{{ site.twitter }}">Tweet</a>
+    </li>
+    {% endif %}
+    {% if site.sharing.facebook %}
+    <li class="social-btn">
+      <div class="fb-like" data-width="150" data-layout="button_count" data-action="like" data-show-faces="true" data-send="false"></div>
+    </li>
+    {% endif %}
+    {% if site.sharing.gplus %}
+    <li class="social-btn">
+      <div class="g-plusone" data-size="medium"></div>
+    </li>
+    {% endif %}
+
+    {% if site.sharing.hn %}
+    <li class="social-btn">
+      <a href="http://news.ycombinator.com/submit" class="hn-share-button">Vote on HN</a>
+    </li>
+    {% endif %}
+  </ul>
+</section>
+{% endif %}
