@@ -8,7 +8,6 @@ pygments:       true
 
 permalink:      pretty
 twitter:        mikemelnicki
-github:         melnicki
 
 relative_permalinks: true
 

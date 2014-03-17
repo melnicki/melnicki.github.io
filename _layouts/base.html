@@ -63,7 +63,7 @@
     <footer class="site-footer">
       <div id="footer">
         <p class="text-muted">Copyright &copy; {{ site.time | date: "%Y" }}, {{ site.publisher }}. All rights reserved.</p>
-        <p><a class="twitter" href="https://twitter.com/{{ site.twitter }}"><i class="fa fa-twitter fa-2x"></i></a> • <a class="github" href="https://github.com/{{ site.github }}"><i class="fa fa-github fa-2x"></i></a> • <a class="rss" href="/feed.xml"><i class="fa fa-rss fa-2x"></i></a></p>
+        <p><a class="twitter" href="https://twitter.com/{{ site.twitter }}"><i class="fa fa-twitter fa-2x"></i></a> • <a class="github" href="{{ site.github.owner_url }}"><i class="fa fa-github fa-2x"></i></a> • <a class="rss" href="/feed.xml"><i class="fa fa-rss fa-2x"></i></a></p>
       </div>
     </footer>
     {% include _scripts.html %}
