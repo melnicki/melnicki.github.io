@@ -8,12 +8,11 @@ layout: base
     {% for post in site.posts %}
       {% unless post.draft %}
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-2 meta center">
+            <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time>
+          </div>
+          <div class="col-xs-10 center">
             <h2 class="index-title">
-              <small class="meta">
-                <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time>
-              </small>
-              &nbsp;
               <a href="{{ post.url }}" rel="prefetch">{{ post.title }}</a>
             </h2>
           </div>

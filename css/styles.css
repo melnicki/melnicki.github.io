@@ -170,6 +170,13 @@ a.github:active {
   font-weight: 300;
 }
 
+.center {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  margin-right:-4px;
+}
+
 
 /*
  * Blog posts
