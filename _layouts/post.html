@@ -16,8 +16,9 @@ layout: base
           <div class="col-xs-12">
             <hr/>
             <p class="blog-post-meta"><i class="fa fa-calendar"></i> {{ page.date | date_to_string }}</p>
-
-            {{ content }}
+            <div class="blog-post-body">
+              {{ content }}
+            </div>
           </div>
         </div>
       </section>

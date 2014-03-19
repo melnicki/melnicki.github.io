@@ -199,6 +199,10 @@ a.github:active {
   color: #999;
 }
 
+.blog-post-body hr {
+  width: 20%;
+}
+
 .social {
   margin-top: 60px;
 }
