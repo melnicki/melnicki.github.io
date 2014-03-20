@@ -27,6 +27,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
     export IGW_ID=`aws ec2 create-internet-gateway | grep InternetGatewayId | head -1 | awk '{gsub(/\"/, "");gsub(/,/,""); print $2}'`
     ```
 3. __Attach the internet gateway to your VPC__.
+
     ```sh
     aws ec2 attach-internet-gateway --internet-gateway-id $IGW_ID --vpc-id $VPC_ID
     ```
@@ -62,7 +63,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
     ```sh
     export SERVICESG_ID=`aws ec2 create-security-group --group-name 'solr' --description 'Solr security group.' --vpc-id $VPC_ID | grep GroupId | head -1 | awk '{gsub(/\"/, "");gsub(/,/,""); print $2}'`
     ```
-10. __Enable SSH inbound from the internet and HTTP & HTTPS inbound from the private subnet for the NAT security group__. NOTE: It's a good idea to run SSH on a port other than 22. Why? Bots on the Internet will constantly try to connect to port 22 looking for any known SSH vulnerabilities. Running SSHD on a non-standard port doesn't increase your security per-se, but it reduces a large amount of botnet activity from showing up in your logs and gives you a fighting chance to patch any new known vulnerabilities before they are detected by nefarious entities on the Internet. Here I'm setting up support for both port 22 and port 20022 - we'll remove port 22 later after we update the SSHD config on the bastion host later.
+10. __Enable SSH inbound from the internet and HTTP & HTTPS inbound from the private subnet for the NAT security group__. NOTE: It's a good idea to run SSH on a port other than 22. Why? Bots on the Internet will constantly try to connect to port 22 looking for any known SSH vulnerabilities. Running sshd on a non-standard port doesn't increase your security per-se, but it reduces a large amount of botnet activity from showing up in your logs and gives you a fighting chance to patch any new known vulnerabilities before your host is exploited. Here I'm setting up support for both port 22 and port 20022 - we'll remove port 22 later after we update the sshd config on the bastion host later.
 
     ```sh
     aws ec2 authorize-security-group-ingress --group-id $NATSG_ID --protocol -1 --source-group $NATSG_ID
@@ -80,7 +81,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
     aws ec2 authorize-security-group-egress --group-id $NATSG_ID --protocol 'tcp' --port 22 --cidr '0.0.0.0/0'
     aws ec2 authorize-security-group-egress --group-id $NATSG_ID --protocol 'udp' --port 123 --cidr '0.0.0.0/0'
     ```
-12. __Allow users to SSH from the NAT host to the hosts in the 'solr' security group__. NOTE: For hosts on the private subnet I'm running SSH on the standard port (22).
+12. __Allow users to SSH from the NAT host to the hosts in the 'solr' security group__. NOTE: For hosts on the private subnet I'm running SSH on the standard port (22), because they aren't accessible from the Internet.
 
     ```sh
     aws ec2 authorize-security-group-ingress --group-id $SERVICESG_ID --protocol -1 --source-group $SERVICESG_ID
@@ -106,14 +107,12 @@ This is a step-by-step guide on how to set up public and private subnets for run
     ```sh
     aws ec2 associate-route-table --route-table-id $CUSTOM_ROUTE_TABLE_ID --subnet-id $PRIVATE_SUBNET_ID
     ```
-    Take note of the `GroupId` in the response.
-
 17. __Create a default route from the private network to the NAT host__.
 
     ```sh
     aws ec2 create-route --route-table-id $CUSTOM_ROUTE_TABLE_ID --destination-cidr-block '0.0.0.0/0' --instance-id $NAT_INSTANCE_ID
     ```
-18. __Create an instance in your private subnet__. This step is optional - it's just to complete the example. Here I'll create a small instance to test the connectivity. Be sure to set the subnet-id to the Id of your private subnet that was returned in the response from step 4 and set the security group to the group you created in step 11.
+18. __Create a new instance in your private subnet__. This step is optional - it's just to complete the example. Here I'll create an m1.small instance to test the connectivity.
 
     ```sh
     export PRIVATE_INSTANCE_ID=`aws ec2 run-instances --image-id ami-e04428d0 --count 1 --instance-type m1.small --key-name MyKeyPair --security-group-ids $SERVICESG_ID --subnet-id $PRIVATE_SUBNET_ID --monitoring 'Enabled=true' | grep InstanceId | head -1 | awk '{gsub(/\"/, "");gsub(/,/,""); print $2}'`
@@ -129,7 +128,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
 
     Host *.us-west-2.compute.internal
       User ubuntu
-      ProxyCommand ssh -W %h:%p ec2-user@ec2-54-186-165-211.us-west-2.compute.amazonaws.com
+      ProxyCommand ssh -p 22 -W %h:%p ec2-user@ec2-54-186-165-211.us-west-2.compute.amazonaws.com
     ```
     Replace `ec2-54-186-165-211.us-west-2.compute.amazonaws.com` with the public DNS hostname for your NAT host on both lines 2 and 8.
 20. __SSH to the bastion host__.
@@ -137,7 +136,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
     ```sh
     ssh bastion
     ```
-21. __Switch the SSHD port on the bastion host__. Once you are connected to the bastion host, edit the sshd config file using:
+21. __Switch the sshd port on the bastion host__. Once you are connected to the bastion host, edit the sshd config file using:
 
     ```sh
     sudo vi /etc/ssh/sshd_config
@@ -152,6 +151,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
     ```sh
     sudo service sshd restart
     ```
+    NOTE: It's a good idea to leave your current session connected until you complete the next two steps just in case you lock yourself out.
 22. __Update your ssh config file__. On your local machine, update the file you create in step 19 to use the new port:
 
     ```
@@ -163,7 +163,7 @@ This is a step-by-step guide on how to set up public and private subnets for run
 
     Host *.us-west-2.compute.internal
       User ubuntu
-      ProxyCommand ssh -W %h:%p ec2-user@ec2-54-186-145-78.us-west-2.compute.amazonaws.com
+      ProxyCommand ssh -p 20022 -W %h:%p ec2-user@ec2-54-186-145-78.us-west-2.compute.amazonaws.com
     ```
     Replace `ec2-54-186-145-78.us-west-2.compute.amazonaws.com` with the public DNS hostname for your NAT host on both lines 2 and 8.
 23. __Verify you can ssh to the bastion host__.
