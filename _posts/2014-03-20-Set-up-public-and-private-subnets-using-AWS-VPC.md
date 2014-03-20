@@ -4,7 +4,7 @@ title:  "Set up public and private subnets using AWS VPC"
 date:   2014-03-20 09:09:09
 ---
 
-This is a step-by-step guide on how to set up public and private subnets for running a service on an internal network within AWS and optionally load-balancing that service using an ELB.
+This is a step-by-step guide on how to set up public and private subnets for running a service on an internal network within AWS. This guide will also set up a bastion host (or jump host) and show you how you can easily ssh in to the hosts within your private subnet via the bastion host. All of this stuff can be done via the AWS web console, but I thought it would be helpful to show the specific commands and provide some commentary about what is happening on each step.
 
 ---
 
