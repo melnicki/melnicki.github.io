@@ -27,3 +27,7 @@ analytics:
 # Google Fonts
 # eg. 'Droid+Sans:400,700|Droid+Serif:400,700'
 google_font: 'Open+Sans:400,700,300'
+
+disqus:
+  # Eg. "exampleblog" Set to false to disable comments
+  shortname:  melnicki

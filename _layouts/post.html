@@ -24,4 +24,9 @@ layout: base
       </section>
     </article>
     {% include _social.html %}
+    {% if site.disqus.shortname %}
+      <section>
+        {% include _disqus.html %}
+      </section>
+    {% endif %}
   </div>
