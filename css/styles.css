@@ -60,6 +60,12 @@ a:focus {
   font-weight: 300;
 }
 
+code {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
 .menu {
   padding-top: 20px;
   font-weight: 700;
